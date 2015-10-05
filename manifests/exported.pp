@@ -2,9 +2,9 @@
 # starting from a user (for ssh authentication) and one dir
 # Label is used to filter collected resources
 class unifiedlogs::exported ($user,$dir,$label) {
-  @@unifiedlogs::sshfsmount { "${fqdn}_${dir}":
+  @@::unifiedlogs::sshfsmount { "${::fqdn}_${dir}":
     user    => $user,
-    host    => $fqdn,
+    host    => $::fqdn,
     dir     => $dir,
     tag     => $label,
   }

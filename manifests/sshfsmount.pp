@@ -1,13 +1,13 @@
 # Defined type sshfsmount 
 # Example usage:
-# @@sshfsmount { "host.local.domain-apache-/var/log/httpd":
+# @@sshfsmount { "host.local.domain_apache_/var/log/httpd":
 #   host => 'host.local.domain',
 #   user => 'apache',
 #   dir  => '/var/log/apache',
 # }
 define unifiedlogs::sshfsmount ($host,$user,$dir) {
-  $dirs = [ "$::unifiedlogs::params::hookdir/$host", "$::unifiedlogs::params::hookdir/$host/$dir" ]
-  $mountdir = "$::unifiedlogs::params::hookdir/$host/$dir"
+  $dirs = [ "$::unifiedlogs::params::hookdir/${host}", "$::unifiedlogs::params::hookdir/${host}/${dir}" ]
+  $mountdir = "$::unifiedlogs::params::hookdir/${host}/${dir}"
   file { $dirs:
     ensure => directory,
     owner  => 'root',
@@ -15,11 +15,11 @@ define unifiedlogs::sshfsmount ($host,$user,$dir) {
     mode   => '0755',
   }
 
-  service { "sshfs-$host-$user-$dir":
-    start   => "sshfs -o ro -o allow_other $user@$host:$dir $mountdir",
-    stop    => "umount $mountdir",
-    status  => "mount|grep $mountdir",
-    require => File[$mountdir],
+  service { "sshfs_${host}_${user}_${dir}":
     ensure  => running,
+    start   => "sshfs -o ro -o allow_other ${user}@${host}:${dir} ${mountdir}",
+    stop    => "umount ${mountdir}",
+    status  => "mount|grep ${mountdir}",
+    require => File[$mountdir],
   }
 }
