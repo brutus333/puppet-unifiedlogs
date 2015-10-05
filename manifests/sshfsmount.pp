@@ -6,8 +6,8 @@
 #   dir  => '/var/log/apache',
 # }
 define unifiedlogs::sshfsmount ($host,$user,$dir) {
-  $mountdir = "$::unifiedlogs::params::hookdir/$host/$dir"
-  file { $mountdir:
+  $mountdirs = [ "$::unifiedlogs::params::hookdir/$host", "$::unifiedlogs::params::hookdir/$host/$dir" ]
+  file { $mountdirs:
     ensure => directory,
     owner  => 'root',
     group  => 'root',
