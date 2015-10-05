@@ -1,0 +1,33 @@
+{
+  "name": "brutus333-unifiedlogs",
+  "version": "0.1.0",
+  "author": "virgil.chereches@gmx.net",
+  "summary": "This module attempt to offer a solution to application log access by mounting log directories via sshfs",
+  "license": "Apache 2.0",
+  "source": "https://github.com/brutus333/puppet-unifiedlogs",
+  "project_page": "https://github.com/brutus333/puppet-unifiedlogs",
+  "issues_url": "https://github.com/brutus333/puppet-unifiedlogs/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ]
+}
