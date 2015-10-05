@@ -15,9 +15,10 @@ define unifiedlogs::sshfsmount ($host,$user,$dir) {
   }
 
   service { "sshfs-$host-$user-$dir":
-    start  => "sshfs -o ro -o allow_other $user@$host:$dir $mountdir",
-    stop   => "umount $mountdir",
-    status => "mount|grep $mountdir",
+    start   => "sshfs -o ro -o allow_other $user@$host:$dir $mountdir",
+    stop    => "umount $mountdir",
+    status  => "mount|grep $mountdir",
     require => File[$mountdirs],
+    ensure  => running,
   }
 }
