@@ -18,6 +18,6 @@ define unifiedlogs::sshfsmount ($host,$user,$dir) {
     start  => "sshfs -o ro -o allow_other $user@$host:$dir $mountdir",
     stop   => "umount $mountdir",
     status => "mount|grep $mountdir",
-    require => File["$mountdir"],
+    require => File[$mountdirs],
   }
 }
