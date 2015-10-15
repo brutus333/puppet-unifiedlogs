@@ -37,11 +37,14 @@ Since the module is using exported resources it needs storeconfig enabled.
 On your application server nodes declare the unifiedlogs::exported class:
 
 class { '::unifiedlogs::exported':
-    dir => "/logs",
-    user => "root",
+    dir   => "/logs",
+    user  => "root",
+    label => "LABEL", 
 }
 
 This has the effect of declaring an exported unifiedlogs::sshfsmount resource for directory "/logs" and user root (the user used for ssh access from the central server).
+
+The label parameter is used to restrict the resource collection on the centralized logs server.
 
 On the centralized logs server, include or declare the unifiedlogs class:
 
@@ -51,15 +54,16 @@ or
 
 class { '::unifiedlogs':
         hookdir => "/mnt",
+        label   => "LABEL",
 }
 
 hookdir is the top directory where the sshfs mounts are created.
 
 ## Usage
 
-Class unifiedlogs has two params: hookdir and package_name (the second is required only if the module is used on a Linux distribution different from Debian/Ubuntu or RHEL/Centos).
+Class unifiedlogs has three params: hookdir, label and package_name (the second is required only if the module is used on a Linux distribution different from Debian/Ubuntu or RHEL/Centos).
 
-Class unifiedlogs::exported has dir and user parameters explained above.\
+Class unifiedlogs::exported has dir, label and user parameters explained above.
 
 
 ## Reference
