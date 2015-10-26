@@ -6,12 +6,11 @@
 #   dir  => '/var/log/apache',
 # }
 define unifiedlogs::sshfsmount ($host,$user,$dir) {
-  $dirs = [ "$::unifiedlogs::params::hookdir", "$::unifiedlogs::params::hookdir/${host}" ]
-  $mountdir = "$::unifiedlogs::params::hookdir/${host}"
-  file { $dirs:
-    ensure => directory,
-    mode   => '0755',
-  }
+  $dirs = [ "$::unifiedlogs::hookdir", "$::unifiedlogs::hookdir/${host}" ]
+
+  $mountdir = "$::unifiedlogs::hookdir/${host}"
+  
+  ensure_resource('file',$dirs,{ ensure => directory, mode   => '0755' })
 
   service { "sshfs_${host}_${user}_${dir}":
     ensure  => running,
