@@ -17,7 +17,7 @@ define unifiedlogs::sshfsmount ($host,$user,$dir) {
 
   service { "sshfs_${host}_${user}_${dir}":
     ensure  => running,
-    start   => "sshfs -o ro -o allow_other ${user}@${host}:${dir} ${mountdir}",
+    start   => "sshfs -o ro -o allow_other -o follow_symlinks ${user}@${host}:${dir} ${mountdir}",
     stop    => "umount ${mountdir}",
     status  => "mount|grep ${mountdir}",
     require => File[$mountdir],
