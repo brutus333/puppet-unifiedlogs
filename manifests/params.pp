@@ -5,6 +5,9 @@
 #
 class unifiedlogs::params {
   $hookdir = '/mnt'
+  $user    = undef
+  $label   = undef
+  $dir     = undef
   case $::osfamily {
     'Debian': {
       $package_name = 'sshfs'

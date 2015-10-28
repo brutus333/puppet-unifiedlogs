@@ -14,8 +14,8 @@
 # * $label:
 #   A label used to restrict the collection of exported resources
 class unifiedlogs (
-  $package_name = $::unifiedlogs::params::package_name,
-  $hookdir = $::unifiedlogs::params::hookdir,
+  $package_name = $unifiedlogs::params::package_name,
+  $hookdir = $unifiedlogs::params::hookdir,
   $label = '',
 ) inherits ::unifiedlogs::params {
 
