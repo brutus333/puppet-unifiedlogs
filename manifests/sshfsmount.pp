@@ -10,7 +10,7 @@ define unifiedlogs::sshfsmount ($host,$user,$dir) {
 
   $mountdir = "${::unifiedlogs::hookdir}/${host}"
   
-  ensure_resource('file',$dirs,{ ensure => directory, mode   => '0755' })
+  ensure_resource('file',$dirs,{ ensure => directory })
 
   service { "sshfs_${host}_${user}_${dir}":
     ensure  => running,
